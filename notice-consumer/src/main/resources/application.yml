@@ -1,0 +1,12 @@
+hostAddress: 47.112.35.237
+
+server:
+  port: 7001
+
+spring:
+  dubbo:
+    application:
+      name: notice-consumer
+    registry:
+      address: zookeeper://${hostAddress}:2181
+    scan: com.edu.scau.noticeconsumer.controller

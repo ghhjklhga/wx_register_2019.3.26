@@ -1,0 +1,14 @@
+hostAddress: 47.112.35.237
+
+server:
+  port: 7003
+  servlet:
+    context-path: /register
+
+spring:
+  dubbo:
+    application:
+      name: register-consumer
+    registry:
+      address: zookeeper://${hostAddress}:2181
+    scan: com.edu.scau.registerconsumer.controller
