@@ -12,7 +12,7 @@ public interface NumberService {
 
     ServerResponse getNumberById(Integer numberId);
 
-    ServerResponse getNumberByDoctorid(String userToken);
+    ServerResponse getNumberByDoctorid(Integer doctorId);
 
     //  扣库存
     boolean decNumberById(Integer numberId);

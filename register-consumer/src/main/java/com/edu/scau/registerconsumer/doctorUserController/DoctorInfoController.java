@@ -1,6 +1,8 @@
 package com.edu.scau.registerconsumer.doctorUserController;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.edu.scau.api.redisapi.api.RedisService;
+import com.edu.scau.commom.pojo.DoctorUser;
 import com.edu.scau.commom.response.ServerResponse;
 import com.edu.scau.registerapi.service.DoctorInfoService;
 import com.edu.scau.registerapi.service.NumberService;
@@ -16,11 +18,14 @@ public class DoctorInfoController {
     private DoctorInfoService doctorInfoService;
     @Reference
     private NumberService numberService;
+    @Reference
+    private RedisService redisService;
 
     //获取医生用户的所有号码列表 返回包括状态是否就诊
     @PostMapping("/number/all")
     public ServerResponse getDoctorNumberAll(@RequestHeader("userToken")String token){
-        ServerResponse response = numberService.getNumberByDoctorid(token);
+        DoctorUser doctorUser = (DoctorUser) redisService.get(token);
+        ServerResponse response = numberService.getNumberByDoctorid(doctorUser.getId());
         log.info("【获取医生用户的所有号码】获取成功！");
         return response;
     }

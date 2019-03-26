@@ -19,7 +19,8 @@ public class MywebConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(doctorLoginInterceptor)
                 .addPathPatterns("/doctorInfo/*")
-                .addPathPatterns("/doctorUser/logout");
+                .addPathPatterns("/doctorUser/logout")
+                .addPathPatterns("/feedback/list");
 
     }
 //    @SuppressWarnings({ "rawtypes", "unchecked" })

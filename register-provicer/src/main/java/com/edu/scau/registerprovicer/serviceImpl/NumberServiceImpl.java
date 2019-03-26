@@ -93,9 +93,8 @@ public class NumberServiceImpl implements NumberService {
     }
     //获取所有日期的号码
     @Override
-    public ServerResponse getNumberByDoctorid(String userToken) {
-        DoctorUser doctorUser = (DoctorUser) redisService.get(userToken);
-        List<Number> numberList = numberRepository.selectNumberByDoctorid(doctorUser.getDoctorid());
+    public ServerResponse getNumberByDoctorid(Integer doctorId) {
+        List<Number> numberList = numberRepository.selectNumberByDoctorid(doctorId);
         List<NumberDayVO> numberDayVOList = buildNumberDayVOList(numberList);
         return ServerResponse.createBySuccessData(numberDayVOList);
     }
